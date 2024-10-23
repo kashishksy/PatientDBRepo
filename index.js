@@ -25,7 +25,7 @@ const swaggerDefinition = {
     },
     servers: [
       {
-        url: "http://localhost:5000",  // Your local server URL
+        url: process.env.SERVER_URL || "http://localhost:5000",  // Your local server URL
       },
     ],
   };
@@ -55,6 +55,13 @@ const mongoURL = process.env.MONGO_URL
 mongoose.connect(mongoURL).then(() => {
 
     console.log('connection is successful :)')
+     // Log if the server is running on localhost or Render
+     if (process.env.SERVER_URL) {
+      console.log(`Server is live on Render at: ${process.env.SERVER_URL}`);
+  } else {
+      console.log(`Server is running locally at: http://localhost:${PORT}`);
+  }
+
 
     app.listen(PORT, () => {
 
