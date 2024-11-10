@@ -89,7 +89,7 @@ route.get('/patients/search', fetchPatientByName);
  *       500:
  *         description: Internal server error.
  */
-route.get('fetch/:id', fetchPatientById);
+route.get('/fetch/:id', fetchPatientById);
 /**
  * @swagger
  * /api/patients/create:
