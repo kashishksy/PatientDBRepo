@@ -15,7 +15,7 @@ export const create = async(req, res) => {
 
         const savedPatient = await patientData.save()
         res.status(200).json(savedPatient)
-        console.log(savedPatient)
+        //console.log(savedPatient)
     }catch(error){
 
         return res.status(500).json({error: "Internal server error occurred :O"})
