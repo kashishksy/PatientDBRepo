@@ -73,7 +73,7 @@ export const fetchPatientById = async (req, res) => {
     try {
       const { id } = req.params; // Get the 'id' from the URL parameters
   
-      const patient = await patientModel.findById(id); // Find the patient by ID
+      const patient = await patientModel.findOne({ _id: id });  // Find by _id; // Find the patient by ID
       
       if (!patient) {
         return res.status(404).json({ message: "Patient not found." });
