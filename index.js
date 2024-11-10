@@ -1,10 +1,10 @@
-import express from 'express'
-import mongoose from 'mongoose'
-import dotenv from 'dotenv'
-import bodyParser from 'body-parser'
-import route from './routes/patientRoutes.js'
-import swaggerJSDoc from 'swagger-jsdoc'
-import swaggerUI from 'swagger-ui-express'
+import express from 'express'    // Importing the Express framework for creating the server
+import mongoose from 'mongoose'    // Importing Mongoose for MongoDB connection and schema handling
+import dotenv from 'dotenv'            // Importing dotenv to manage environment variables
+import bodyParser from 'body-parser'             // Importing body-parser to handle JSON request bodies
+import route from './routes/patientRoutes.js'   // Importing routes for handling patient-related API requests
+import swaggerJSDoc from 'swagger-jsdoc'       // Importing swagger-jsdoc for API documentation generation
+import swaggerUI from 'swagger-ui-express'    // Importing swagger-ui-express to serve Swagger documentation UI
 
 
 const app = express()
