@@ -1,7 +1,8 @@
 import express from 'express'
-import { create, fetch, update, deletePatient } from '../controller/patientController.js'
+import { create, fetch, update, deletePatient, fetchPatientByName } from '../controller/patientController.js'
 
 const route = express.Router();
+
 /**
  * @swagger
  * /api/patient/fetch:
@@ -31,6 +32,36 @@ const route = express.Router();
  */
 
 route.get('/fetch', fetch)
+
+/**
+ * @swagger
+ * /api/patient/fetch/search:
+ *   get:
+ *     summary: Fetch patient by name
+ *     description: Retrieves patient based on the name provided from the database.
+ *     responses:
+ *       200:
+ *         description: Returns a patient with matching name.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   _id:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   status:
+ *                     type: string
+ *       400:
+ *         description: No patients found.
+ *       500:
+ *         description: Internal server error.
+ */
+route.get('/patients/search', fetchPatientByName);
+
 /**
  * @swagger
  * /api/patients/create:
@@ -56,6 +87,8 @@ route.get('/fetch', fetch)
  *       500:
  *         description: Internal server error.
  */
+
+
 route.post('/create', create)
 /**
  * @swagger

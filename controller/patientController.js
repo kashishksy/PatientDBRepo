@@ -44,6 +44,32 @@ export const fetch = async(req, res) => {
 
 }
 
+
+// GET request to fetch patient by name
+export const fetchPatientByName = async (req, res) => {
+    try {
+      const { name } = req.query;  // Get the 'name' from the query string
+  
+      if (!name) {
+        return res.status(400).json({ message: "Please provide a patient name to search." });
+      }
+  
+      // Search for patients with the provided name (case-insensitive)
+      const patients = await patientModel.find({ name: { $regex: name, $options: 'i' } });
+  
+      if (patients.length === 0) {
+        return res.status(404).json({ message: "No patients found with that name." });
+      }
+  
+      return res.status(200).json(patients);
+  
+    } catch (error) {
+      return res.status(500).json({ error: "Internal server error occurred :O" });
+    }
+  };
+  
+  
+
 //PUT request
 export const update = async(req,res) => {
     try{
