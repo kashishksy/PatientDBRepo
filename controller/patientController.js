@@ -67,6 +67,24 @@ export const fetchPatientByName = async (req, res) => {
       return res.status(500).json({ error: "Internal server error occurred :O" });
     }
   };
+
+  // fetch patient by ID
+export const fetchPatientById = async (req, res) => {
+    try {
+      const { id } = req.params; // Get the 'id' from the URL parameters
+  
+      const patient = await patientModel.findById(id); // Find the patient by ID
+      
+      if (!patient) {
+        return res.status(404).json({ message: "Patient not found." });
+      }
+      
+      return res.status(200).json(patient); // Send the patient data as response
+    } catch (error) {
+      return res.status(500).json({ error: "Internal server error occurred" });
+    }
+  };
+  
   
   
 
