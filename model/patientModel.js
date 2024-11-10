@@ -25,6 +25,10 @@ const patientSchema = new mongoose.Schema({
     dateOfDischarge:{
         type:String,
         required:true
+    },
+    photo: {
+        type: String,  // Stores URL or Base64 string of the photo
+        required: false  // Optional field
     }
 
 })
