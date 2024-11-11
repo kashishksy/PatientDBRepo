@@ -63,7 +63,7 @@ route.get('/patients/search', fetchPatientByName);
 
 /**
  * @swagger
- * /api/patient/fetch:
+ * /api/patient/fetch/id:
  *   get:
  *     summary: Fetch patient by id
  *     description: Retrieves patient based on the id provided.
