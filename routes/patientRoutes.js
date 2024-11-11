@@ -25,12 +25,11 @@ const route = express.Router();
  *                     type: string
  *                   status:
  *                     type: string
- *       400:
+ *       404:
  *         description: No patients found.
  *       500:
  *         description: Internal server error.
  */
-
 route.get('/fetch', fetch)
 
 /**
@@ -55,7 +54,7 @@ route.get('/fetch', fetch)
  *                     type: string
  *                   status:
  *                     type: string
- *       400:
+ *       404:
  *         description: No patients found.
  *       500:
  *         description: Internal server error.
@@ -84,12 +83,13 @@ route.get('/patients/search', fetchPatientByName);
  *                     type: string
  *                   status:
  *                     type: string
- *       400:
+ *       404:
  *         description: No patients found.
  *       500:
  *         description: Internal server error.
  */
 route.get('/fetch/:id', fetchPatientById);
+
 /**
  * @swagger
  * /api/patients/create:
@@ -108,7 +108,7 @@ route.get('/fetch/:id', fetchPatientById);
  *               email:
  *                 type: string
  *     responses:
- *       200:
+ *       201:
  *         description: Patient created successfully.
  *       400:
  *         description: Patient already exists.
@@ -136,7 +136,7 @@ route.post('/create', create)
  *               email:
  *                 type: string
  *     responses:
- *       200:
+ *       201:
  *         description: patient created successfully.
  *       400:
  *         description: patient already exists.
@@ -163,10 +163,10 @@ route.put("/update/:id", update)
  *               email:
  *                 type: string
  *     responses:
- *       200:
- *         description: patient created successfully.
- *       400:
- *         description: patient already exists.
+ *       201:
+ *         description: patient deleted successfully.
+ *       404:
+ *         description: patient not found.
  *       500:
  *         description: Internal server error.
  */
