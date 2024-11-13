@@ -163,7 +163,7 @@ route.put("/update/:id", update)
  *               email:
  *                 type: string
  *     responses:
- *       201:
+ *       200:
  *         description: patient deleted successfully.
  *       404:
  *         description: patient not found.

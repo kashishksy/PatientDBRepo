@@ -116,7 +116,7 @@ export const deletePatient = async(req, res) => {
             return res.status(404).json({message:"Patient not found"})
         } 
         await patientModel.findByIdAndUpdate(id)
-        res.status(201).json({message: "Patient deleted successfully"})
+        res.status(200).json({message: "Patient deleted successfully"})
     }catch(error){
 
         return res.status(500).json({error: "Internal server error occurred :O"})
