@@ -115,7 +115,7 @@ export const deletePatient = async(req, res) => {
         if(!patientExists){
             return res.status(404).json({message:"Patient not found"})
         } 
-        await patientModel.findByIdAndUpdate(id)
+        await patientModel.findByIdAndDelete(id)
         res.status(200).json({message: "Patient deleted successfully"})
     }catch(error){
 
