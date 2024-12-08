@@ -106,7 +106,7 @@ export const update = async(req,res) => {
 }
 
 
-//DELETE request
+//DELETE a patient request
 export const deletePatient = async(req, res) => {
     try{
         const id = req.params.id;
@@ -122,3 +122,34 @@ export const deletePatient = async(req, res) => {
         return res.status(500).json({error: "Internal server error occurred :O"})
     }
 }
+
+// DELETE a medical report request
+export const deleteReport = async (req, res) => {
+  try {
+    const { patientId, reportId } = req.params;
+
+    // Check if the patient exists
+    const patientExists = await patientModel.findById(patientId);
+    if (!patientExists) {
+      return res.status(404).json({ message: "Patient not found" });
+    }
+
+    // Find the report by its ID within the medicalReports array
+    const reportIndex = patientExists.medicalReports.findIndex(report => report._id.toString() === reportId);
+    if (reportIndex === -1) {
+      return res.status(404).json({ message: "Report not found" });
+    }
+
+    // Remove the report from the medicalReports array using splice
+    patientExists.medicalReports.splice(reportIndex, 1);
+
+    // Save the updated patient data with the report removed
+    await patientExists.save();
+
+    res.status(200).json({ message: "Report deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error occurred :O" });
+  }
+};
+
