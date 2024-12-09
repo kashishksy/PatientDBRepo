@@ -159,6 +159,15 @@ export const addReport = async (req, res) => {
       const patientId = req.params.id;  // Get patient ID from URL params
       const { type, date, result, attachments } = req.body;  // Extract report details from request body
 
+        // Validate patientId
+        if (!mongoose.Types.ObjectId.isValid(patientId)) {
+          return res.status(400).json({ message: "Invalid patient ID" });
+      }
+
+      console.log("Patient ID:", patientId);
+      console.log("Request Body:", req.body);
+
+
       // Check if patient exists
       const patient = await patientModel.findById(patientId);
       if (!patient) {
