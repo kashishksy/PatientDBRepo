@@ -1,5 +1,5 @@
 import express from 'express'
-import { create, fetch, update, deletePatient, fetchPatientByName, fetchPatientById, deleteReport } from '../controller/patientController.js'
+import { create, fetch, update, deletePatient, fetchPatientByName, fetchPatientById, deleteReport, addReport } from '../controller/patientController.js'
 
 const route = express.Router();
 
@@ -194,5 +194,8 @@ route.delete("/delete/:id", deletePatient)
 
 // DELETE a medical report request
 route.delete("/deleteReport/:patientId/:reportId", deleteReport);
+
+route.post("/addReport/:id", addReport);
+
 
 export default route

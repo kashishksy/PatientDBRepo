@@ -153,3 +153,36 @@ export const deleteReport = async (req, res) => {
   }
 };
 
+// POST a new medical report request
+export const addReport = async (req, res) => {
+  try {
+      const patientId = req.params.id;  // Get patient ID from URL params
+      const { type, date, result, attachments } = req.body;  // Extract report details from request body
+
+      // Check if patient exists
+      const patient = await patientModel.findById(patientId);
+      if (!patient) {
+          return res.status(404).json({ message: "Patient not found" });
+      }
+
+      // Create the new report object
+      const newReport = {
+          type,
+          date,
+          result,
+          attachments,
+      };
+
+      // Add the report to the patient's medicalReports array
+      patient.medicalReports.push(newReport);
+
+      // Save the updated patient document
+      await patient.save();
+
+      // Return a success message
+      res.status(201).json({ message: "Report added successfully", patient });
+  } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal server error occurred :O" });
+  }
+};
