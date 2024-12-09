@@ -1,4 +1,5 @@
 import patientModel from "../model/patientModel.js"
+import mongoose from "mongoose"
 
 //POST function
 export const create = async(req, res) => {
